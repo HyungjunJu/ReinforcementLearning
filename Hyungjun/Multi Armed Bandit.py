@@ -4,7 +4,7 @@
 # # Bandit
 # for first step of reinforcement learning, implement multi-armed bandit (MAB) problems
 
-# In[2]:
+# In[1]:
 
 
 import tensorflow as tf
@@ -12,12 +12,21 @@ import tensorflow.contrib.slim as slim
 import numpy as np
 
 
-# In[3]:
+# # 멀티암드밴딧 (Multi Armed Bandit)
+# 하나의 밴딧 (예를 들면 슬롯 머신) 에서, 여러 손잡이가 존재 (Multi-Armed)
+# 여러 손잡이들은 각각 다른 비율로 양(+1) 또는 음(-1)의 보상을 부여
+# 목적은 에이전트가 가장 보상이 높을 Arm을 자주 선택하게 되는 것
+# 모든 의도와 목적에 대해 불변하는 오직 한 개의 상태만이 존재, 해당 상태에서의 행동도 고정
+# 즉, 환경의 상태를 완전히 무시하는 에이전트 설계
+# 
+
+# In[7]:
 
 
 # 밴딧의 손잡이 목록을 작성
 # 현재 손잡이들 중 4번째(인덱스는 3)손잡이가 가장 자주 양의 보상을 제공토록 설정
-bandit_arms = [0.2,0,-0.2,2]
+bandit_arms = [0.2,0,-0.2,-2] # 음의 값인 이유는 랜덤하게 생성된 값이 이 값보다 크게 나올 확률이 음일 경우 높아지므로
+
 num_arms = len(bandit_arms)
 def pullBandit(bandit):
     # 랜덤한 값을 구함````
@@ -30,7 +39,7 @@ def pullBandit(bandit):
         return -1
 
 
-# In[4]:
+# In[8]:
 
 
 tf.reset_default_graph()
@@ -51,7 +60,7 @@ optimizer = tf.train.AdamOptimizer(learning_rate=1e-3)
 update = optimizer.minimize(loss)
 
 
-# In[6]:
+# In[9]:
 
 
 # 에이전트를 학습시킬 총 에피소드의 수를 설정한다.
@@ -90,4 +99,10 @@ with tf.Session() as sess:
         print("...and it was right")
     else:
         print("...and it was wrong")
+
+
+# In[ ]:
+
+
+
 
