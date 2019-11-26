@@ -69,7 +69,7 @@ class gameEnv():
         hero = self.objects[0]
         heroX = hero.x
         heroY = hero.y
-        penalize = 0.
+        panelize = 0.
         if direction == 0 and hero.y >= 1:
             hero.y -= 1
         if direction == 1 and hero.y <= self.sizeY - 2:
@@ -78,7 +78,7 @@ class gameEnv():
             hero.x -= 1
         if direction == 3 and hero.x <= self.sizeX - 2:
             hero.x += 1
-        if hero.x == heroX and hero.y == hero.Y:
+        if hero.x == heroX and hero.y == heroY:
             panelize = 0.0
         self.objects[0] = hero
         return panelize
@@ -145,5 +145,5 @@ class gameEnv():
             print(penalty)
             return state,(reward+penalty),done
         else:
-            return state, (reward+penalty).done
+            return state, (reward+penalty),done
 
