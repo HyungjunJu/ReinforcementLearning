@@ -20,3 +20,6 @@ https://github.com/tensorflow/tensorflow/issues/25807
 
 gridworld.py 출처
 https://github.com/awjuliani/DeepRL-Agents/blob/master/gridworld.py
+
+scipy version: 1.2.1사용
+pip install scipy==1.2.1
