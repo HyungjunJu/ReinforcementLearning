@@ -1,13 +1,19 @@
-#!/usr/bin/env python
-# coding: utf-8
-
+# To add a new cell, type '# %%'
+# To add a new markdown cell, type '# %% [markdown]'
+# %% Change working directory from the workspace root to the ipynb file location. Turn this addition off with the DataScience.changeDirOnImportExport setting
+# ms-python.python added
+import os
+try:
+	os.chdir(os.path.join(os.getcwd(), 'Hyungjun'))
+	print(os.getcwd())
+except:
+	pass
+# %% [markdown]
 # # Helper.py
 # helper for gridword.py
 # 
 
-# In[2]:
-
-
+# %%
 import numpy as np
 import random
 import tensorflow as tf
@@ -19,17 +25,13 @@ import itertools
 import tensorflow.contrib.slim as slim
 
 
-# In[4]:
-
-
+# %%
 # 게임 프레임의 크기를 재조절하는 함수
 def processState(state1):
     return np.reshape(state1, [21168])
 
 
-# In[5]:
-
-
+# %%
 # 제 1 네트워크의 매개변수에 맞춰 타깃 네트워크의 매개변수를 업데이트 하는 함수들
 def updateTargetGraph(tfVars, tau):
     total_vars = len(tfVars)
@@ -50,9 +52,7 @@ def updateTarget(op_holder, sess):
         print("Target Set Failed")
 
 
-# In[6]:
-
-
+# %%
 # 성능 수치 및 에피소드 로그를 기록 (컨트롤 센터용)
 def saveToCenter(i,rList,jList,bufferArray,summaryLength,h_size,sess,mainQN,time_per_step):
     with open('./Center/log.csv', 'a') as myfile:
@@ -86,9 +86,7 @@ def saveToCenter(i,rList,jList,bufferArray,summaryLength,h_size,sess,mainQN,time
         
 
 
-# In[7]:
-
-
+# %%
 # 학습 에피소드를 GIF로 저장(컨트롤 센터 용)
 def make_gif(images, fname, duration=2, true_image=False, salience=False, salIMGS=None):
     import moviepy.editor as mpy
@@ -121,4 +119,5 @@ def make_gif(images, fname, duration=2, true_image=False, salience=False, salIMG
         #clipB.write_gif(fname, fps=len(images)/duration, verbose=False)
     else:
         clip.write_gif(fname, fps=len(images)/duration, verbose=False)
+
 
